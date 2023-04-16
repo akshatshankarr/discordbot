@@ -2,14 +2,10 @@ import discord, requests, json, random, os
 from discord.ext import commands
 from dotenv import load_dotenv
 
-load_dotenv()
-
 intents=discord.Intents.default()
-intents.members=True
-intents.presences=True
-intents.guild_messages=True
-intents.message_content=True
+intents.members=True; intents.presences=True; intents.guild_messages=True; intents.message_content=True
 
+load_dotenv()
 discord_key= os.getenv('DISCORD_KEY')
 rapid_key= os.getenv('RAPID_KEY')
 
@@ -33,7 +29,7 @@ def rockpaper(c):
     options=['rock','paper','scissors']
     r = random.choice(options)
     if c not in options:
-        return('tohar ammi ke bur')
+        return('please enter one of "rock", "paper" or "scissors"')
     elif ((r=='rock' and c=='paper')or(r=='paper' and c=='scissors')or (r=='scissors' and c=='rock')):
         res=('You win!')
     elif r==c:
@@ -41,7 +37,7 @@ def rockpaper(c):
     elif ((r=='rock' and c=='scissors')or(r=='paper' and c=='rock')or(r=='scissors' and c=='paper')):
         res=('You lose!')
     else:
-        return ('how the fuck did you manage to break this')
+        return ('unknown error, breaking.')
     return ('You picked {0}\nThe bot picked {1}\n{2}').format(c,r,res)
     
 @client.event
