@@ -17,7 +17,7 @@ def joke():
      "X-RapidAPI-Key": rapid_key,
      "X-RapidAPI-Host": "dad-jokes.p.rapidapi.com"
      }
-    response = requests.request("GET", url, headers=headers)
+    response = requests.get(url,headers=headers)
     data=json.loads(response.text)
     setup=data['body'][0]['setup']
     pun=data['body'][0]['punchline']
@@ -64,7 +64,7 @@ async def on_message(message,choice):
 
 @client.command(name='act', help='write the name of the activity after command to change')
 async def on_message(message,change):
-    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.watching, name=change))
+    await client.change_presence(activity=discord.Activity(type=discord.ActivityType.playing, name=change))
     await message.channel.send('switched activity status to '+str(change))
 
 client.run(discord_key)
